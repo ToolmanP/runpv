@@ -1,0 +1,9 @@
+[submodule "kernel"]
+	path = kernel
+	url = git@github.com:ToolmanP/linux.git
+[submodule "packages/qemu"]
+	path = packages/qemu
+	url = git@github.com:ToolmanP/qemu.git
+[submodule "buildroot"]
+	path = buildroot
+	url = git@github.com:buildroot/buildroot.git
