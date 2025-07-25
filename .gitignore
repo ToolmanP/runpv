@@ -7,3 +7,5 @@ mkosi.tools.manifest
 
 .venv
 venv
+root/.*
+!root/.gitkeep
