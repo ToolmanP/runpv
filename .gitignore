@@ -9,3 +9,5 @@ mkosi.tools.manifest
 venv
 root/.*
 !root/.gitkeep
+.cache/
+compile_commands.json

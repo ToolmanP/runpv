@@ -4,7 +4,7 @@ set -e
 
 TEMP=$( \
     getopt \
-    -o 'c:ik' \
+    -o 'ik' \
     --long 'incremental' \
     --long 'fstests' \
     --long 'kernel' \
@@ -16,6 +16,9 @@ TEMP=$( \
     --long 'fio' \
     --long 'qemu' \
     --long 'qemu_targets' \
+    --long 'kata-guest' \
+    --long 'gvisor' \
+    --long 'virtiofsd' \
     -n 'mkosi.build' \
     -- "$@" \
 )
@@ -50,11 +53,6 @@ while true; do
             shift 2
             continue
         ;;
-        '-c'|'--config')
-            CONFIG="$2"
-            shift 2
-            continue
-        ;;
         '--ltp')
             LTP=1
             shift 1
@@ -80,6 +78,21 @@ while true; do
             shift 1
             continue
         ;;
+        '--gvisor')
+            GVISOR=1
+            shift 1
+            continue
+        ;;
+        '--kata-guest')
+            KATA_GUEST=1
+            shift 1
+            continue
+        ;;
+        '--virtiofsd')
+            VIRTIOFSD=1
+            shift 1
+            continue
+        ;;
         '--')
             shift
             break
@@ -94,7 +107,8 @@ cat >"$ARTIFACTDIR"/env <<EOF
 INCREMENTAL=$INCREMENTAL
 FSTESTS=$FSTESTS
 KERNEL=$KERNEL
-CONFIG=$CONFIG
+CONFIG=configs/mkosi/kernel/${KERNEL_VERSION}.config
+KATA_GUEST_CONFIG=configs/mkosi/kernel/${KERNEL_VERSION}-kata-guest.config
 LTP=$LTP
 BTRFS_PROGS=$BTRFS_PROGS
 BPFILTER=$BPFILTER
@@ -102,4 +116,8 @@ BPFTRACE=$BPFTRACE
 FIO=$FIO
 QEMU=$QEMU
 QEMU_TARGET_LIST=$QEMU_TARGET_LIST
+KATA_GUEST=$KATA_GUEST
+LLVM=1
+GVISOR=$GVISOR
+VIRTIOFSD=$VIRTIOFSD
 EOF
