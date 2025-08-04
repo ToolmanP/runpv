@@ -7,3 +7,9 @@
 [submodule "packages/kernel"]
 	path = packages/kernel
 	url = git@github.com:ToolmanP/linux.git
+[submodule "packages/gvisor"]
+	path = packages/gvisor
+	url = git@github.com:ToolmanP/gvisor.git
+[submodule "packages/virtiofsd"]
+	path = packages/virtiofsd
+	url = https://gitlab.com/virtio-fs/virtiofsd.git
