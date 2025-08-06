@@ -12,4 +12,4 @@
 	url = git@github.com:ToolmanP/gvisor.git
 [submodule "packages/virtiofsd"]
 	path = packages/virtiofsd
-	url = https://gitlab.com/virtio-fs/virtiofsd.git
+	url = git@github.com:ToolmanP/virtiofsd.git
