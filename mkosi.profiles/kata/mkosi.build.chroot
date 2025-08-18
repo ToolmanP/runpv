@@ -20,5 +20,5 @@ fi
 cd "${DESTDIR}"/opt/kata/bin
 find . -type f -name '*kata*' -exec ln -s /opt/kata/bin/{} "${DESTDIR}"/usr/local/bin/ \;
 sed -i 's|/opt/kata/bin/qemu-system-x86_64|/work/build/qemu/qemu-system-x86_64|' "${DESTDIR}"/opt/kata/share/defaults/kata-containers/configuration.toml
-sed -i 's|/opt/kata/libexec/virtiofsd|/work/build/virtiofsd/release/virtiofsd|g' "${DESTDIR}"/opt/kata/share/defaults/kata-containers/configuration.toml
+sed -i 's|/opt/kata/libexec/virtiofsd|/work/build/virtiofsd/build_dir/release/virtiofsd|g' "${DESTDIR}"/opt/kata/share/defaults/kata-containers/configuration.toml
 sed -i 's|/opt/kata/share/kata-containers/vmlinux.container|/work/build/kata-guest/vmlinux|' "${DESTDIR}"/opt/kata/share/defaults/kata-containers/configuration.toml

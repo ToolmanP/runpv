@@ -24,4 +24,5 @@ GO111MODULE=on go build -o "${BUILDDIR}/gvisor/containerd-shim-runsc-v1" gvisor.
 
 if ! ((INCREMENTAL)); then
 	cp "${BUILDDIR}"/gvisor/runsc "${DESTDIR}"/usr/local/bin/
+	cp "${BUILDDIR}"/gvisor/containerd-shim-runsc-v1 "${DESTDIR}"/usr/local/bin/
 fi

@@ -8,4 +8,4 @@ if [[ ! -f "${BUILDDIR}"/nerdctl.tar.xz ]]; then
 fi
 
 mkdir -p "${DESTDIR}/usr/local/bin/"
-tar -xvf "${BUILDDIR}"/nerdctl.tar.xz -C "${DESTDIR}/usr/local/bin/"
+tar -xvf "${BUILDDIR}"/nerdctl.tar.xz -C "${DESTDIR}/usr/local/bin/" --wildcards "nerdctl"
