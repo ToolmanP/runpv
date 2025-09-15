@@ -67,8 +67,6 @@ if [[ -z "$KERNEL" || -z "$CONFIG" ]]; then
 fi
 
 
-TEMP=$(mktemp -d)
-
 EXTRA="O=${KERNEL_O} KCONFIG_CONFIG=$(realpath ${CONFIG})"
 
 if [[ $LLVM -eq 1 ]]; then
