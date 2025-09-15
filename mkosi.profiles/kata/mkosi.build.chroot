@@ -7,6 +7,8 @@ set -e
 
 ((INCREMENTAL)) && ((KATA)) && exit 0
 
+KATA_CONF="${KATA_CONF:-/opt/kata/share/defaults/kata-containers/configuration.toml}"
+
 if [[ ! -f "${DESTDIR}/opt/kata/bin/kata-runtime" ]]; then
         if [[ ! -f "${BUILDDIR}/kata-static.tar.xz" ]]; then
                 VERSION=$(curl -s https://api.github.com/repos/kata-containers/kata-containers/releases/latest |
@@ -19,6 +21,8 @@ fi
 
 cd "${DESTDIR}"/opt/kata/bin
 find . -type f -name '*kata*' -exec ln -s /opt/kata/bin/{} "${DESTDIR}"/usr/local/bin/ \;
-sed -i 's|/opt/kata/bin/qemu-system-x86_64|/work/build/qemu/qemu-system-x86_64|' "${DESTDIR}"/opt/kata/share/defaults/kata-containers/configuration.toml
-sed -i 's|/opt/kata/libexec/virtiofsd|/work/build/virtiofsd/build_dir/release/virtiofsd|g' "${DESTDIR}"/opt/kata/share/defaults/kata-containers/configuration.toml
-sed -i 's|/opt/kata/share/kata-containers/vmlinux.container|/work/build/kata-guest/vmlinux|' "${DESTDIR}"/opt/kata/share/defaults/kata-containers/configuration.toml
+
+sed -i 's|/opt/kata/bin/qemu-system-x86_64|/work/build/qemu/qemu-system-x86_64|' "${DESTDIR}${KATA_CONF}"
+sed -i 's|/opt/kata/libexec/virtiofsd|/work/build/virtiofsd/build_dir/release/virtiofsd|g' "${DESTDIR}${KATA_CONF}"
+sed -i 's|/opt/kata/share/kata-containers/vmlinux.container|/work/build/kata-guest/vmlinux|' "${DESTDIR}${KATA_CONF}"
+sed -i 's|firmware = ""|firmware="/opt/kata/share/kata-qemu/qemu/qboot.rom"|' "${DESTDIR}${KATA_CONF}"
