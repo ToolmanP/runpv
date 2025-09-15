@@ -16,9 +16,7 @@ mkdir -p "${BUILDDIR}/gvisor/cache"
 export GOMODCACHE="${BUILDDIR}/gvisor/modcache"
 export GOCACHE="${BUILDDIR}/gvisor/cache"
 
-echo "module runsc" >go.mod
-GO111MODULE=on go get gvisor.dev/gvisor/runsc@go
-
+echo "module runsc"  > go.mod
 CGO_ENABLED=0 GO111MODULE=on go build -o "${BUILDDIR}/gvisor/runsc" gvisor.dev/gvisor/runsc
 GO111MODULE=on go build -o "${BUILDDIR}/gvisor/containerd-shim-runsc-v1" gvisor.dev/gvisor/shim
 
